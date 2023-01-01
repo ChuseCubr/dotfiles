@@ -1,0 +1,7 @@
+*
+!.gitignore
+!nvim/
+!qtile/
+!alacritty/
+!easyeffects/
+!starship.toml
