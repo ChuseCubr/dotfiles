@@ -2,6 +2,10 @@
 !.gitignore
 !nvim/
 !qtile/
+!picom/
+!picom/*
+!dunst/
+!dunst/*
 !alacritty/
 !easyeffects/
 !starship.toml

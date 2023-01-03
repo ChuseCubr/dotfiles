@@ -28,10 +28,10 @@ colors:
     white:   '0xECEFF4'
 
 font:
-  size: 14
+  size: 10
   normal:
     family: FantasqueSansMono Nerd Font
     style: Regular
 
 window:
-  opacity: 0.9
+  opacity: 0.80
