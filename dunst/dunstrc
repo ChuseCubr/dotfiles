@@ -21,7 +21,7 @@
     follow = none
 
     ### Geometry ###
-    geometry = "300x50-5+45"
+    geometry = "300x50-5+35"
 
     # Position the notification in the top right corner
     # origin = top-right
