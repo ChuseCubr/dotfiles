@@ -10,6 +10,9 @@
 !gtk-3.0/settings.ini
 !gtk-4.0/
 !gtk-4.0/settings.ini
+!btop/
+!btop/themes/
+!btop/themes/*
 !alacritty/
 !easyeffects/
 !starship.toml
