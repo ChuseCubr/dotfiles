@@ -1,6 +1,3 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/chusecubr/nvim-config
-[submodule "qtile"]
-	path = qtile
-	url = https://github.com/chusecubr/qtile-config
