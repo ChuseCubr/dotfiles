@@ -23,6 +23,7 @@ format = "[$ssh_symbol$hostname](bright-green) in "
 [directory]
 truncation_length = 0
 style = "blue"
+use_os_path_sep = false
 
 # [character]
 # success_symbol = "[❯](purple)"
@@ -34,14 +35,8 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+format = "[[( $conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
 stashed = "≡"
 
 [git_state]
