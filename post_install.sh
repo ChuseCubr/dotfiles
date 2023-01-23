@@ -1,3 +1,14 @@
+# dotfiles
+echo -e "\e[34mDownloading configuration files...\e[0m"
+cd "$HOME/.config"
+git init
+git branch -m main
+git remote add origin https://github.com/chusecubr/dotfiles
+git pull origin wsl
+git submodule update --init --recursive
+git submodule update --remote --recursive
+echo -e "\e[32mInstalled configuration files.\e[0m"
+
 # node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

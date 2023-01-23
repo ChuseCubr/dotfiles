@@ -94,7 +94,7 @@ echo -e "\e[32mInstalled Starship.\e[0m"
 
 echo -e "\e[34mInstalling Neovim...\e[0m"
 cd "$REPO_PATH"
-git clone https://github.com/neovim/neovim
+nodo git clone https://github.com/neovim/neovim
 cd neovim
 if [ ! "$NIGHTLY" = true ]; then
   git checkout stable
@@ -112,18 +112,8 @@ fi
 make install
 echo -e "\e[32mInstalled Neovim.\e[0m"
 
-echo -e "\e[34mDownloading configuration files...\e[0m"
-cd "$USER_HOME/.config"
-git init
-git branch -m main
-git remote add origin https://github.com/chusecubr/dotfiles
-git pull origin wsl
-git submodule update --init --recursive
-git submodule update --remote --recursive
-echo -e "\e[32mInstalled configuration files.\e[0m"
-
 echo -e "\e[34mRunning post-installation script...\e[0m"
-nodo bash "$USER_HOME/.config/post_install.sh"
+curl -sSf https://raw.githubusercontent.com/ChuseCubr/dotfiles/wsl/post_install.sh | nodo bash
 echo -e "\e[32mFinished setting up WSL!\e[0m"
 echo -e "\e[33mPlease run the following commands before running Neovim to complete setup:\e[0m"
 echo -e "\t\e[33msource ~/.bashrc\e[0m"
