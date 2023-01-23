@@ -38,22 +38,25 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root."
-    exit 1
+  echo "Please run as root."
+  exit 1
 fi
 
 USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
+function nodo {
+  sudo -u $SUDO_USER $*
+}
 
 if [ ! -e "$USER_HOME/.config" ]; then
-    mkdir "$USER_HOME/.config"
+  nodo mkdir "$USER_HOME/.config"
 fi
 
 if [ ! "$REPO_PATH" ]; then
-    REPO_PATH="$USER_HOME/repos"
+  REPO_PATH="$USER_HOME/repos"
 fi
 
 if [ ! -e "$REPO_PATH" ]; then
-    mkdir "$REPO_PATH"
+  nodo mkdir "$REPO_PATH"
 fi
 
 if [ "$LOCAL" ]; then
@@ -78,12 +81,16 @@ apt install -y fzf ripgrep
 echo -e "\e[32mInstalled apt packages.\e[0m"
 
 echo -e "\e[34mInstalling Node version manager...\e[0m"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | sudo -u $SUDO_USER bash -s -- -y
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | nodo bash -s -- -y
 echo -e "\e[32mInstalled Node version manager.\e[0m"
 
 echo -e "\e[34mInstalling Rust...\e[0m"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sudo -u $SUDO_USER sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | nodo sh -s -- -y
 echo -e "\e[32mInstalled Rust.\e[0m"
+
+echo -e "\e[34mInstalling Starship...\e[0m"
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+echo -e "\e[32mInstalled Starship.\e[0m"
 
 echo -e "\e[34mInstalling Neovim...\e[0m"
 cd "$REPO_PATH"
@@ -96,7 +103,7 @@ make CMAKE_BUILD_TYPE=$BUILD_TYPE
 if [ "$INSTALL_PATH" ]; then
   make CMAKE_INSTALL_PREFIX="$INSTALL_PATH"
   if [ ! -e "$INSTALL_PATH "]; then
-    mkdir -p "$INSTALL_PATH"
+    nodo mkdir -p "$INSTALL_PATH"
   fi
   if [[ ! ":$PATH:" == *"$INSTALL_PATH"* ]]; then
     export PATH="$INSTALL_PATH:$PATH"
@@ -104,10 +111,6 @@ if [ "$INSTALL_PATH" ]; then
 fi
 make install
 echo -e "\e[32mInstalled Neovim.\e[0m"
-
-echo -e "\e[34mInstalling Starship...\e[0m"
-curl -sS https://starship.rs/install.sh | sudo -u $SUDO_USER sh -s -- -y
-echo -e "\e[32mInstalled Starship.\e[0m"
 
 echo -e "\e[34mDownloading configuration files...\e[0m"
 cd "$USER_HOME/.config"
@@ -120,5 +123,8 @@ git submodule update --remote --recursive
 echo -e "\e[32mInstalled configuration files.\e[0m"
 
 echo -e "\e[34mRunning post-installation script...\e[0m"
-sudo -u $SUDO_USER bash "$USER_HOME/.config/post_install.sh"
+nodo bash "$USER_HOME/.config/post_install.sh"
 echo -e "\e[32mFinished setting up WSL!\e[0m"
+echo -e "\e[33mPlease run the following commands before running Neovim to complete setup:\e[0m"
+echo -e "\t\e[33msource ~/.bashrc\e[0m"
+echo -e "\t\e[33mnpm install yarn\e[0m"
