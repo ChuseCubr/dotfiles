@@ -1,5 +1,13 @@
 # My dotfiles (WIP)
 
-![carousel1](https://user-images.githubusercontent.com/27886422/212262411-9aac93f4-c8e7-4349-bf90-a94dcaf93e2c.png)
+![image](https://user-images.githubusercontent.com/27886422/214010854-e7102098-9e77-4898-b80a-d884f13a09c3.png)
 
-[Wallpaper](https://www.deviantart.com/chusecubr/art/A-Silent-Voice-Koe-no-Katachi-Nord-Wallpaper-923544233)
+## Installation
+
+An attempt was made. Run the following command in your terminal:
+
+```bash
+curl -sSf https://raw.githubusercontent.com/ChuseCubr/dotfiles/wsl/install.sh | sudo bash
+```
+
+Check the script for configuration flags
