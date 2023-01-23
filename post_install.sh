@@ -10,6 +10,8 @@ npm install yarn
 source "$HOME/.cargo/env"
 
 # starship
-if (! grep --quiet "starship" "$USER_HOME/.bashrc"); then
-  echo eval \"\$\(starship init bash\)\" >> "$USER_HOME/.bashrc"
+if (! grep --quiet "starship" "$HOME/.bashrc"); then
+  echo eval \"\$\(starship init bash\)\" >> "$HOME/.bashrc"
 fi
+
+source "$HOME/.bashrc"

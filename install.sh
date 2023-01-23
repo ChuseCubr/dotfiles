@@ -82,7 +82,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | sudo 
 echo -e "\e[32mInstalled Node version manager.\e[0m"
 
 echo -e "\e[34mInstalling Rust...\e[0m"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sudo -u $SUDO_USER sh -s -- -y
 echo -e "\e[32mInstalled Rust.\e[0m"
 
 echo -e "\e[34mInstalling Neovim...\e[0m"
@@ -106,7 +106,7 @@ make install
 echo -e "\e[32mInstalled Neovim.\e[0m"
 
 echo -e "\e[34mInstalling Starship...\e[0m"
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+curl -sS https://starship.rs/install.sh | sudo -u $SUDO_USER sh -s -- -y
 echo -e "\e[32mInstalled Starship.\e[0m"
 
 echo -e "\e[34mDownloading configuration files...\e[0m"
